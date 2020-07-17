@@ -5,6 +5,8 @@
     header('Location:index.php?campo=vazio');
   }
 
+    
+
  ?> 
 <html>
   <head>
@@ -48,8 +50,12 @@
                 </div>
 
                 <div class="col-6 d-flex justify-content-center">
-                  <!-- <a href="consultar_chamado.php"> -->
-                    <a href="App\Controllers\consultaChamadosController.php?consultar=chamados"> 
+                  <!-- <a href="consultar_chamado.php"> 
+                    <a href="App\Controllers\consultaChamadosController.php?consultar=chamados">
+                      <a href="consultaChamadosController.php?consultar=chamados">-->
+                      <a href="consultar_chamado.php">
+
+
                       <img src="formulario_consultar_chamado.png" width="70" height="70">
                   </a>
                 </div>

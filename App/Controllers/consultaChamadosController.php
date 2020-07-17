@@ -1,11 +1,14 @@
 <?php 
-	require_once('../../vendor/autoload.php');
+	namespace App\Controllers;	 
+	  
 	use App\Models\conexaoBDO;
 	use App\Models\chamadosModel;
 	use App\Models\crudChamadosModel;
 
+	 $user ='Bruce Barros Silva asdf';
 
-	header('Location:../../consultar_chamado.php');
+
+	//header('Location:../../consultar_chamado.php'); */
  	/* Aqui vou fazer a lógica que traz todos os chamados 
  	if(isset($_GET['consultar']) && $_GET['consultar'] == 'chamados'){
  		 

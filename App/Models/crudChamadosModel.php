@@ -14,16 +14,17 @@
 
 		public function read(){
 
-		 $sql = "SELECT * FROM chamados";
+		 $sql = "SELECT * FROM chamados WHERE titulo = :titulo";
 		 $stmt = $this->conn->prepare($sql);
+		 $stmt->bindValue(':titulo', $this->chamados->__get('titulo'));
 		 $stmt->execute();
 
 		 $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
  	
  		return $result; 
-		 // foreach ($result as  $value) {
-		 //	 echo $value->titulo. "<br>";
-		 // }
+		   foreach ($result as  $value) {
+		  	 echo $value->titulo. "<br>";
+		  }
 
 		}
 

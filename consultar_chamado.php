@@ -1,20 +1,25 @@
 <?php 
- session_start();
- require_once('vendor/autoload.php');
-
+ 
+ require 'vendor/autoload.php';
+ session_start(); 
+ 
+ //echo $value->titulo;
+    
   use App\Models\conexaoBDO;
   use App\Models\chamadosModel;
   use App\Models\crudChamadosModel;
+   
 
      
-  if(!isset($_SESSION['user'])){ 
+   if(!isset($_SESSION['user'])){ 
     header('Location:index.php?campo=vazio');
   } 
-
+  
     echo "O usuário logado é o ".$_SESSION['userLogado'];
  
     $conn = new conexaoBDO();
     $chamadosModel = new chamadosModel();
+    $chamadosModel->__set('titulo','ab');
 
     $consultar = new crudChamadosModel($conn, $chamadosModel);
 
@@ -25,10 +30,9 @@
      foreach ($result as  $value) {
        //echo $value->titulo. "<br>";
         //if($value == 'bruce'){
-          echo $value->titulo. "<br>";
+          $value->titulo. "<br>";
         //}
-     }
-
+     } 
 ?>
 
 <html>
@@ -63,33 +67,29 @@
           <div class="card">
             <div class="card-header">
               Consulta de chamado
-            </div>
-            
-            <div class="card-body">
-              
-              <div class="card mb-3 bg-light">
-                <div class="card-body">
+            </div>  
 
-                  <h5 class="card-title"> 
+            <!--parte do card do chamado -->
+          
 
-                    <?php foreach ($result as  $value) {
-                       echo $value->titulo. "<br>";
-                     }?>
-
-                  </h5> 
-
-                  <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                  <p class="card-text">Descrição do chamado...</p>
-
-                </div>
-              </div>
- 
+            <div class="card-body"> 
+              <?php foreach ($result as  $value) { ?> 
+                <div class="card mb-3 bg-light">
+                  <div class="card-body"> 
+                    <h5 class="card-title">  Titulo <br> <?=$value->titulo ?> </h5>  
+                    <h6 class="card-subtitle mb-2 text-muted"> categoria <br> <?=$value->categoria ?></h6>
+                    <p class="card-text"> Descrição  <br> <?=$value->descricao ?></p> 
+                  </div>
+                </div>  
+              <!--Fim da parte do card do chamado --> 
+               <?php }?>
 
               <div class="row mt-5">
                 <div class="col-6">
                   <a class="btn btn-lg btn-warning btn-block" type="submit" href="home.php"> Voltar </a>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
