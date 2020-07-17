@@ -29,6 +29,11 @@
         <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         App Help Desk
       </a>
+
+       <nav class="navbar navbar-dark bg-dark">
+          <a class="navbar-brand" href="index.php">Sair</a>  
+        </nav> 
+        
     </nav>
 
     <?php if(isset($_GET['campo']) && $_GET['campo'] == 'vazio'){ ?> 
@@ -100,7 +105,7 @@
 
                       <div class="col-6">
                         <button class="btn btn-lg btn-info btn-block" type="submit">Abrir</button>
-                      </div> 
+                      </div>  
 
                     </div>
                   </form>

@@ -22,6 +22,13 @@
 		$user = $_POST['user'];
 		$senha = $_POST['senha'];
 
+		//aqui estou verificando qual o id e enviando por sessão quem está logado
+		if($user == 'bruce'){
+			$id = 1; 
+		}else if ($user == 'mae'){
+			$id = 2;
+		}
+
 		//echo "usuario " . $user. "e senha " .$senha;
 
 		$login = new loginModel();
@@ -39,6 +46,8 @@
 		if($resul >0){
 			$_SESSION['user'] = 'true';
 			$_SESSION['userLogado'] = $user;
+			$_SESSION['id'] = $id;
+
 			header('Location:../../home.php');
 		}else{
 			header('Location:../../index.php?login=false');

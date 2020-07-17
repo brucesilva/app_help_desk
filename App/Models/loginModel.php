@@ -2,6 +2,7 @@
 	namespace app\models;
 
 	class loginModel{
+		private $id;
 		private $user;
 		private $senha;
 

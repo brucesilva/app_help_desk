@@ -14,27 +14,31 @@
 
 		public function read(){
 
-		 $sql = "SELECT * FROM chamados WHERE titulo = :titulo";
-		 $stmt = $this->conn->prepare($sql);
-		 $stmt->bindValue(':titulo', $this->chamados->__get('titulo'));
-		 $stmt->execute();
+			$sql = "SELECT l.id, l.user, c.titulo, c.descricao, c.categoria
+					FROM login as l
+					INNER JOIN chamados as c
+					ON l.id = c.id_user WHERE l.id = :id;
+					";	
+			$stmt = $this->conn->prepare($sql);
+			$stmt->bindValue(':id', $this->chamados->__get('id'));
+			//$stmt->bindValue(':id', 1);
+		 	$stmt->execute();
 
-		 $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
+		 	$result = $stmt->fetchAll(\PDO::FETCH_OBJ);
  	
- 		return $result; 
-		   foreach ($result as  $value) {
-		  	 echo $value->titulo. "<br>";
-		  }
+ 			return $result; 
+				 
 
 		}
 
 		public function create(){
 			
-			$sql = "INSERT INTO chamados (titulo,categoria,descricao) values (?, ?,?)";
+			$sql = "INSERT INTO chamados (id_user,titulo,categoria,descricao) values (?,?, ?,?)";
 			$stmt = $this->conn->prepare($sql);
-			$stmt->bindValue(1, $this->chamados->__get('titulo'));
-			$stmt->bindValue(2, $this->chamados->__get('categoria'));
-			$stmt->bindValue(3, $this->chamados->__get('descricao'));
+			$stmt->bindValue(1, $this->chamados->__get('id'));
+			$stmt->bindValue(2, $this->chamados->__get('titulo'));
+			$stmt->bindValue(3, $this->chamados->__get('categoria'));
+			$stmt->bindValue(4, $this->chamados->__get('descricao'));
 
 			return $stmt->execute();
 

@@ -8,6 +8,7 @@
   use App\Models\conexaoBDO;
   use App\Models\chamadosModel;
   use App\Models\crudChamadosModel;
+  use App\Models\loginModel;
    
 
      
@@ -15,11 +16,11 @@
     header('Location:index.php?campo=vazio');
   } 
   
-    echo "O usuário logado é o ".$_SESSION['userLogado'];
+    echo "O usuário logado é o ".$_SESSION['userLogado']. " e o ID é ".$_SESSION['id'];
  
     $conn = new conexaoBDO();
-    $chamadosModel = new chamadosModel();
-    $chamadosModel->__set('titulo','ab');
+    $chamadosModel = new loginModel();
+    $chamadosModel->__set('id', $_SESSION['id']);
 
     $consultar = new crudChamadosModel($conn, $chamadosModel);
 
@@ -30,7 +31,7 @@
      foreach ($result as  $value) {
        //echo $value->titulo. "<br>";
         //if($value == 'bruce'){
-          $value->titulo. "<br>";
+          //echo $value->id. "<br>";
         //}
      } 
 ?>
@@ -58,6 +59,11 @@
         <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         App Help Desk
       </a>
+
+       <nav class="navbar navbar-dark bg-dark">
+          <a class="navbar-brand" href="index.php">Sair</a>  
+        </nav> 
+        
     </nav>
 
     <div class="container">    
@@ -76,9 +82,9 @@
               <?php foreach ($result as  $value) { ?> 
                 <div class="card mb-3 bg-light">
                   <div class="card-body"> 
-                    <h5 class="card-title">  Titulo <br> <?=$value->titulo ?> </h5>  
-                    <h6 class="card-subtitle mb-2 text-muted"> categoria <br> <?=$value->categoria ?></h6>
-                    <p class="card-text"> Descrição  <br> <?=$value->descricao ?></p> 
+                    <h5 class="card-title">   <br> <?=$value->titulo ?> </h5>  
+                    <h6 class="card-subtitle mb-2 text-muted">  <br> <?=$value->categoria ?></h6>
+                    <p class="card-text">   <br> <?=$value->descricao ?></p> 
                   </div>
                 </div>  
               <!--Fim da parte do card do chamado --> 

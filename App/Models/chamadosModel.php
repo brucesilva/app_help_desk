@@ -2,6 +2,7 @@
 	namespace app\models;
 
 	class chamadosModel{
+		private $id;
 		private $titulo;
 		private $categoria;
 		private $descricao;
