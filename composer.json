@@ -1,0 +1,19 @@
+{
+    "name": "bart/app_help_desk",
+    "description": "App_Help_Desk",
+    "authors": [
+        {
+            "name": "Bruce Silva",
+            "email": "bruce_silva1010@hotmail.com"
+        }
+    ],
+    "require": {},
+    "autoload":{
+    	"psr-4":{
+    		"App\\":"app",
+    		"Controllers\\":"controllers",
+    		"Models\\":"models",
+    		"View\\":"view"
+    	}
+    }
+}
