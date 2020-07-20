@@ -21,8 +21,6 @@
 
  	echo $_SESSION['id'];
 
-  
-
  	if(isset($_POST['titulo']) && $_POST['titulo'] == '' && $_POST['descricao'] == '' ) { 
  		header('Location:../../abrir_chamado.php?campo=vazio');  
  	} 
@@ -42,11 +40,11 @@
  	$insereChamadosModel = new crudChamadosModel($conn, $chamadosModel);
  	$resul = $insereChamadosModel->create();
 
- 	if($resul > 0){
- 		header('Location:../../abrir_chamado.php?chamado=ok');
- 	}else{
- 		header('Location:../../abrir_chamado.php?chamado=erro');
- 	}
+ 	  if($resul > 0){
+ 		 header('Location:../../abrir_chamado.php?chamado=ok');
+ 	 }else{
+ 		 header('Location:../../abrir_chamado.php?chamado=erro');
+ 	  }
  
 
 ?>
