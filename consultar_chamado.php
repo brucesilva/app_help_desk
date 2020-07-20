@@ -10,13 +10,12 @@
   use App\Models\crudChamadosModel;
   use App\Models\loginModel;
    
-
-     
+ 
    if(!isset($_SESSION['user'])){ 
     header('Location:index.php?campo=vazio');
   } 
   
-    echo "O usuário logado é o ".$_SESSION['userLogado']. " e o ID é ".$_SESSION['id'];
+    //echo "O usuário logado é o ".$_SESSION['userLogado']. " e o ID é ".$_SESSION['id'];
  
     $conn = new conexaoBDO();
     $chamadosModel = new loginModel();
@@ -56,7 +55,7 @@
 
     <nav class="navbar navbar-dark bg-dark">
       <a class="navbar-brand" href="#">
-        <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+       <!-- <img src="ancora 2.jpg" width="50" height="50" class="d-inline-block align-top" alt=""> -->
         App Help Desk
       </a>
 

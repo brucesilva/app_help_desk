@@ -4,9 +4,7 @@
   if(!isset($_SESSION['user'])){ 
     header('Location:index.php?campo=vazio');
   }
-
-    
-
+ 
  ?> 
 <html>
   <head>
@@ -27,10 +25,9 @@
   <body>
 
     <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">
-        <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        App Help Desk
-      </a>
+        <a class="navbar-brand" href="home.php"> 
+          App Help Desk
+        </a>
 
        <nav class="navbar navbar-dark bg-dark">
           <a class="navbar-brand" href="index.php">Sair</a>  
