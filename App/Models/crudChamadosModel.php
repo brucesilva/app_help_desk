@@ -14,7 +14,7 @@
 
 		public function read(){
 
-			$sql = "SELECT l.id, l.user, c.titulo, c.descricao, c.categoria
+			$sql = "SELECT l.id, l.user,c.id_titulo, c.titulo, c.descricao, c.categoria
 					FROM login as l
 					INNER JOIN chamados as c
 					ON l.id = c.id_user WHERE l.id = :id;
