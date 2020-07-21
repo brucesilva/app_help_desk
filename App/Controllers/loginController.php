@@ -8,9 +8,9 @@
 	use App\Models\validaLogin;
 
 
-	echo '<pre>';
-	print_r($_POST);
-	echo '</pre>';
+	//echo '<pre>';
+	//print_r($_POST);
+	//echo '</pre>';
 
 	
 	//Aqui estou verificando se tem algo no POST, se não tiver eu redireciono o mesmo
@@ -25,8 +25,12 @@
 		//aqui estou verificando qual o id e enviando por sessão quem está logado
 		if($user == 'bruce'){
 			$id = 1; 
-		}else if ($user == 'mae'){
+		}
+		if ($user == 'mae'){
 			$id = 2;
+		}
+		 if ($user == 'patricia'){
+			$id = 3;
 		}
 
 		//echo "usuario " . $user. "e senha " .$senha;

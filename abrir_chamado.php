@@ -93,7 +93,7 @@
                     
                     <div class="form-group">
                       <label>Descrição</label>
-                      <textarea required  name="descricao" class="form-control" rows="3"></textarea>
+                      <textarea required  name="descricao" class="form-control" rows="5"></textarea>
                     </div>
 
                     <div class="row mt-5">

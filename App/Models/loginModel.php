@@ -3,6 +3,7 @@
 
 	class loginModel{
 		private $id;
+		private $perfil;
 		private $user;
 		private $senha;
 

@@ -98,16 +98,24 @@
                       <div class="col-md-3" style=" text-align: center; margin: auto;"> 
                          <i class="fa fa-trash fa-lg" onclick="removeChamado(<?=$value->id_titulo?>);"></i>
                          Data de Abertura <?=date('d/m/Y', strtotime($value->dataChamado)) ?>
+                         Horário - <?=date('H:i:s', strtotime($value->dataChamado)) ?> 
                       </div><!-- col-md-1--> 
                     </div><!-- fecha row -->
 
  
                       <h6 class="card-subtitle mb-2 text-muted">  <br> <?=$value->categoria ?></h6>
-                      <p class="card-text">   <br> <?=$value->descricao ?></p> 
-                    </div>
+                      <p class="card-text">   <br> <?=$value->descricao ?></p>  
+                    </div> 
+
+                    <div class="row">
+                      <div class="col-md-6" style="margin-left: 10px; margin-bottom: 5px;" >
+                        <button class="btn btn-primary"> Responder chamado</button>
+                      </div><!-- col-md-6--> 
+                    </div><!-- fecha row -->
+
                 </div>  
               <!--Fim da parte do card do chamado --> 
-               <?php }?> 
+               <?php }?>
 
               <div class="row mt-5">
                 <div class="col-6">
