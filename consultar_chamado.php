@@ -33,8 +33,7 @@
           //echo $value->id. "<br>";
         //}
      } 
- 
-
+  
 ?>
 
 <html>
@@ -99,17 +98,13 @@
                       </div><!-- col-md-1--> 
                     </div><!-- fecha row -->
 
-
-                    
-                        
+ 
                       <h6 class="card-subtitle mb-2 text-muted">  <br> <?=$value->categoria ?></h6>
                       <p class="card-text">   <br> <?=$value->descricao ?></p> 
                     </div>
                 </div>  
               <!--Fim da parte do card do chamado --> 
-               <?php }?>
-
-               
+               <?php }?> 
 
               <div class="row mt-5">
                 <div class="col-6">
@@ -126,8 +121,10 @@
 
     <script type="text/javascript">
       
+      //aqui pego id_titulo para ser apagado
       function removeChamado(id){
-        alert("O id passado é "+id);
+        location.href = 'removeChamadoController.php?id_titulo='+id;
+        // alert("O id passado é "+id);
       }
 
     </script>

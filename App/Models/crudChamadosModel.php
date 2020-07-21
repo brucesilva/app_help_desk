@@ -31,41 +31,48 @@
 		}
 
 		public function create(){
+
+			//aqui estou fazendo um select para pegar os dados da tabela chamados e depois
+			//pegar o resultado do id_titulo para incrementar
+			$sql = "SELECT * FROM chamados";
+			$stmt = $this->conn->prepare($sql);
+			$stmt->execute();
+			$resul = $stmt->FetchAll(\PDO::FETCH_OBJ); 
+
+			foreach ($resul as $chamados) {
+				# code...
+			}
+
+			$soma = $chamados->id_titulo +1;
 			
-			$sql = "INSERT INTO chamados (id_user,titulo,categoria,descricao) values (?,?, ?,?)";
+			//$sql = "INSERT INTO chamados (id_user,titulo,categoria,descricao) values (?,?, ?,?)";
+			$sql = "INSERT INTO chamados  values (?,?,?, ?,?)";
 			$stmt = $this->conn->prepare($sql);
 			$stmt->bindValue(1, $this->chamados->__get('id'));
-			$stmt->bindValue(2, $this->chamados->__get('titulo'));
-			$stmt->bindValue(3, $this->chamados->__get('categoria'));
-			$stmt->bindValue(4, $this->chamados->__get('descricao'));
+			$stmt->bindValue(2, $soma);
+			$stmt->bindValue(3, $this->chamados->__get('titulo'));
+			$stmt->bindValue(4, $this->chamados->__get('categoria'));
+			$stmt->bindValue(5, $this->chamados->__get('descricao'));
 
             //ate aqui está funcionando normal
-            return $stmt->execute();
-     		//use App\Models\chamadosModel;
-
-			//$conn = new conexaoBDO();
-
-			//$teste = read();
-
-			echo '<pre>';
-			//echo print_r($teste);
-			echo '</pre>';
-
-			//vou tentar fazer a lógica para incrementar o id_titulo pegando o último valor
- 
-
-			//echo "O TITULO  É --> " .$this->chamados->__get('titulo'). '<br>';
-			//echo "A CATEGORIA É --> " .$this->chamados->__get('categoria'). '<br>';
-			//echo "A DESCRICAÇÃO É --> " .$this->chamados->__get('descricao'). '<br>';
-
+            return $stmt->execute();  
 
 		} 
 
 		public function update(){
 
+
+
 		}
 
 		public function delete(){
+
+			$sql = "DELETE FROM chamados WHERE id_titulo = :id_titulo";
+			$stmt = $this->conn->prepare($sql);
+			$stmt->bindValue(':id_titulo', $this->chamados->__get('id_titulo'));
+			$stmt->execute();
+
+			return $stmt->rowCount();
 
 		}
 
