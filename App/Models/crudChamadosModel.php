@@ -17,7 +17,7 @@
 			$sql = "SELECT l.id, l.user,c.id_titulo, c.titulo, c.descricao, c.categoria
 					FROM login as l
 					INNER JOIN chamados as c
-					ON l.id = c.id_user WHERE l.id = :id;
+					ON l.id = c.id_user WHERE l.id = :id ORDER BY c.id_titulo DESC 
 					";	
 			$stmt = $this->conn->prepare($sql);
 			$stmt->bindValue(':id', $this->chamados->__get('id'));
