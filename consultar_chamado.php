@@ -74,7 +74,9 @@
         <div class="card-consultar-chamado">
           <div class="card">
             <div class="card-header">
-              Consulta de chamado -  <?= $_SESSION['userLogado']; ?>
+              Consulta de chamado -  <?= $_SESSION['userLogado']; ?> 
+              <!--aqui estou formatando a data para o nosso padrão -->
+             
             </div>  
 
             <!--parte do card do chamado -->
@@ -87,14 +89,15 @@
                   <div class="card-body" >  
                    
                     <div class="row" >
-                      <div class="col-md-11" >
+                      <div class="col-md-9" >
                         <h5 class="card-title">    
-                        <br> <?=$value->titulo ?>    
+                        <br> <?=$value->titulo ?> 
                       </h5> 
                       </div><!-- col-md-11-->
 
-                      <div class="col-md-1" style=" text-align: center; margin: auto;">
+                      <div class="col-md-3" style=" text-align: center; margin: auto;"> 
                          <i class="fa fa-trash fa-lg" onclick="removeChamado(<?=$value->id_titulo?>);"></i>
+                         Data de Abertura <?=date('d/m/Y', strtotime($value->dataChamado)) ?>
                       </div><!-- col-md-1--> 
                     </div><!-- fecha row -->
 

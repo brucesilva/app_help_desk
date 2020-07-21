@@ -14,7 +14,7 @@
 
 		public function read(){
 
-			$sql = "SELECT l.id, l.user,c.id_titulo, c.titulo, c.descricao, c.categoria
+			$sql = "SELECT l.id, l.user,c.id_titulo, c.titulo, c.descricao, c.categoria, c.dataChamado
 					FROM login as l
 					INNER JOIN chamados as c
 					ON l.id = c.id_user WHERE l.id = :id ORDER BY c.id_titulo DESC 
@@ -46,7 +46,7 @@
 			$soma = $chamados->id_titulo +1;
 			
 			//$sql = "INSERT INTO chamados (id_user,titulo,categoria,descricao) values (?,?, ?,?)";
-			$sql = "INSERT INTO chamados  values (?,?,?, ?,?)";
+			$sql = "INSERT INTO chamados (id_user,id_titulo,titulo,categoria,descricao) values (?,?,?, ?,?)";
 			$stmt = $this->conn->prepare($sql);
 			$stmt->bindValue(1, $this->chamados->__get('id'));
 			$stmt->bindValue(2, $soma);
