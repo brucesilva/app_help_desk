@@ -67,7 +67,7 @@
         <div class="card-abrir-chamado">
           <div class="card">
             <div class="card-header">
-              Abertura de chamado
+              Abertura de chamado -  <?= $_SESSION['userLogado']; ?>
             </div>
             <div class="card-body">
               <div class="row">

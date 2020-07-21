@@ -43,7 +43,7 @@
         <div class="card-home">
           <div class="card">
             <div class="card-header">
-              Menu
+              Menu -   <?= $_SESSION['userLogado']; ?>
             </div>
             <div class="card-body">
               <div class="row">

@@ -74,7 +74,7 @@
         <div class="card-consultar-chamado">
           <div class="card">
             <div class="card-header">
-              Consulta de chamado
+              Consulta de chamado -  <?= $_SESSION['userLogado']; ?>
             </div>  
 
             <!--parte do card do chamado -->
@@ -84,10 +84,10 @@
               <?php foreach ($result as  $value) { ?> 
                 <div class="card mb-3 bg-light" >
 
-                  <div class="card-body" style="border: 1px solid red;">  
+                  <div class="card-body" >  
                    
                     <div class="row" >
-                      <div class="col-md-11" style="border: 1px solid red;">
+                      <div class="col-md-11" >
                         <h5 class="card-title">    
                         <br> <?=$value->titulo ?>    
                       </h5> 
