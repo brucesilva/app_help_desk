@@ -20,6 +20,9 @@
     $conn = new conexaoBDO();
     $chamadosModel = new loginModel();
     $chamadosModel->__set('id', $_SESSION['id']);
+    $chamadosModel->__set('perfil', $_SESSION['perfil']);
+
+    //echo "O perfil do usuário logado é ".$_SESSION['perfil'];
 
     $consultar = new crudChamadosModel($conn, $chamadosModel);
 
@@ -57,7 +60,7 @@
   <body>
 
     <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="home.php">
        <!-- <img src="ancora 2.jpg" width="50" height="50" class="d-inline-block align-top" alt=""> -->
         App Help Desk
       </a>

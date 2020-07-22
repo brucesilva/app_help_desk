@@ -25,12 +25,21 @@
 		//aqui estou verificando qual o id e enviando por sessão quem está logado
 		if($user == 'bruce'){
 			$id = 1; 
+			$perfil = 'user';
+			
 		}
 		if ($user == 'mae'){
 			$id = 2;
+			$perfil = 'user';
 		}
 		 if ($user == 'patricia'){
 			$id = 3;
+			$perfil = 'user';
+		}
+
+		if($user == 'admin'){
+			$id = 100;
+			$perfil = 'admin';
 		}
 
 		//echo "usuario " . $user. "e senha " .$senha;
@@ -38,6 +47,7 @@
 		$login = new loginModel();
 		$login->__set('user', $user);
 		$login->__set('senha', $senha);
+ 
 
 		//echo "usuario " . $login->__get('user'). "e senhaa " .$login->__get('senha');
 
@@ -51,6 +61,7 @@
 			$_SESSION['user'] = 'true';
 			$_SESSION['userLogado'] = $user;
 			$_SESSION['id'] = $id;
+			$_SESSION['perfil'] = $perfil;
 
 			header('Location:../../home.php');
 		}else{

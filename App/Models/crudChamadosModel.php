@@ -13,7 +13,29 @@
 		}
 
 		public function read(){
+			 
+			//se o perfil for administrador vai poder olhar todos os chamados
+			$perfil = $this->chamados->__get('perfil');
 
+			if($perfil == 'admin'){
+
+			$sql = "SELECT l.id, l.user,c.id_titulo, c.titulo, c.descricao, c.categoria, c.dataChamado
+						FROM login as l 		
+						inner JOIN chamados as c 
+						ON l.id = c.id_user
+						WHERE perfil = 'user'
+						ORDER BY c.id_titulo DESC";
+
+			$stmt = $this->conn->prepare($sql);
+			$stmt->bindValue(':id', $this->chamados->__get('id'));
+			//$stmt->bindValue(':id', 1);
+			$stmt->execute();
+
+			$result = $stmt->fetchAll(\PDO::FETCH_OBJ);
+
+
+			} else { //se o perfil não for administrador só pode olhar o seu chamado
+ 
 			$sql = "SELECT l.id, l.user,c.id_titulo, c.titulo, c.descricao, c.categoria, c.dataChamado
 					FROM login as l
 					INNER JOIN chamados as c
@@ -22,16 +44,17 @@
 			$stmt = $this->conn->prepare($sql);
 			$stmt->bindValue(':id', $this->chamados->__get('id'));
 			//$stmt->bindValue(':id', 1);
-		 	$stmt->execute();
+			$stmt->execute();
 
-		 	$result = $stmt->fetchAll(\PDO::FETCH_OBJ);
- 	
- 			return $result; 
+			$result = $stmt->fetchAll(\PDO::FETCH_OBJ);
+
+			}
+
+		 		return $result; 	
 				  
 		}
 
 		public function create(){
-
 			//aqui estou fazendo um select para pegar os dados da tabela chamados e depois
 			//pegar o resultado do id_titulo para incrementar
 			$sql = "SELECT * FROM chamados";
