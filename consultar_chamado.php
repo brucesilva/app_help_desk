@@ -35,6 +35,13 @@
         //if($value == 'bruce'){
           //echo $value->id. "<br>";
         //}
+
+       // echo '<pre>';
+       // print_r($value);
+       // echo '</pre>';
+
+
+       // echo $value->status;
      } 
   
 ?>
@@ -82,8 +89,7 @@
              
             </div>  
 
-            <!--parte do card do chamado -->
-          
+            <!--parte do card do chamado --> 
 
             <div class="card-body" > 
               <?php foreach ($result as  $value) { ?> 
@@ -92,21 +98,27 @@
                   <div class="card-body" >  
                    
                     <div class="row" >
-                      <div class="col-md-7" >
+
+                      <div class="col-md-7" style="display: flex;" > 
                         <h5 class="card-title">    
-                        <br> <?=$value->titulo ?> 
+                        <br> <?=$value->titulo ?>  
                       </h5> 
                       </div><!-- col-md-11--> 
  
-                      <div class="col-md-2" style=" text-align: right; margin: auto; "> 
-                         <i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i>
-                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                         <i class="fa fa-trash fa-lg" onclick="removeChamado(<?=$value->id_titulo?>);"></i> 
+                      <div class="col-md-2 justify-content" style=" text-align: right;  margin: auto; ">
+
+                         <i class="fa fa-check-square-o fa-lg" aria-hidden="true" style="color:#00cc6a" onclick="chamadoOK(<?=$value->id_titulo ?>);"></i>
+
+                         <i class="fa fa-pencil fa-lg" aria-hidden="true" onclick="editarChamado(<?=$value->id_titulo ?>);"></i>
+
+                         <i class="fa fa-trash fa-lg" style="color:red" onclick="removeChamado(<?=$value->id_titulo?>);"></i> 
                       </div><!-- col-md-1--> 
 
-                      <div class="col-md-3" style=" margin: auto;"> 
-                          Data de Abertura <?=date('d/m/Y', strtotime($value->dataChamado)) ?>
-                         Horário - <?=date('H:i:s', strtotime($value->dataChamado)) ?> 
+                      <div class="col-md-3" style=" margin: auto; "> 
+                          <strong > Data de Abertura - </strong> <?=date('d/m/Y', strtotime($value->dataChamado)) ?>
+                          <strong> Horário - </strong> <?=date('H:i:s', strtotime($value->dataChamado)) ?> 
+                          <br>
+                          <strong> Status </strong> - <?=$value->status?> 
                        </div> <!-- col-md-3--> 
 
                     </div><!-- fecha row -->
@@ -143,8 +155,17 @@
       
       //aqui pego id_titulo para ser apagado
       function removeChamado(id){
-        location.href = 'removeChamadoController.php?id_titulo='+id;
-        // alert("O id passado é "+id);
+         location.href = 'removeChamadoController.php?id_titulo='+id;
+       // alert("O id passado é "+id);
+      }
+
+      function editarChamado(id){
+        alert("O id da tarefa é o " +id);
+      }
+
+       function chamadoOK(id){
+        location.href = 'chamadoOkController.php?id_titulo='+id;
+        //alert("O id da tarefa é o " +id);
       }
 
     </script>

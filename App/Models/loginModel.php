@@ -2,10 +2,10 @@
 	namespace app\models;
 
 	class loginModel{
-		private $id;
-		private $perfil;
+		private $id; 
 		private $user;
 		private $senha;
+		private $perfil;
 
 		public function __set($atributo, $valor){
 			$this->$atributo = $valor; 

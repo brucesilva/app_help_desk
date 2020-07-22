@@ -19,13 +19,13 @@
 
 			if($perfil == 'admin'){
 
-			$sql = "SELECT l.id, l.user,c.id_titulo, c.titulo, c.descricao, c.categoria, c.dataChamado
-						FROM login as l 		
-						inner JOIN chamados as c 
-						ON l.id = c.id_user
-						WHERE perfil = 'user'
-						ORDER BY c.id_titulo DESC";
-
+			$sql = "SELECT  c.id_user, l.user, c.id_titulo, c.titulo, c.categoria, c.descricao, c.dataChamado,  st.status
+					FROM chamados c
+					INNER JOIN login l ON c.id_user = l.id
+					INNER JOIN statuschamados as st 
+					ON c.id_status = st.id_status
+					ORDER BY c.id_titulo DESC"; 
+			 
 			$stmt = $this->conn->prepare($sql);
 			$stmt->bindValue(':id', $this->chamados->__get('id'));
 			//$stmt->bindValue(':id', 1);
@@ -34,19 +34,28 @@
 			$result = $stmt->fetchAll(\PDO::FETCH_OBJ);
 
 
-			} else { //se o perfil não for administrador só pode olhar o seu chamado
- 
-			$sql = "SELECT l.id, l.user,c.id_titulo, c.titulo, c.descricao, c.categoria, c.dataChamado
-					FROM login as l
-					INNER JOIN chamados as c
-					ON l.id = c.id_user WHERE l.id = :id ORDER BY c.id_titulo DESC 
-					";	
+			} else { //se o perfil não for administrador só pode olhar o seu
+ 	 
+			$sql = "SELECT  c.id_user, l.user, c.id_titulo, c.titulo, c.categoria, c.descricao, c.dataChamado,  st.status
+					FROM login l
+						INNER JOIN chamados c 
+							ON l.id = c.id_user
+								
+						INNER JOIN statuschamados as st 
+							ON c.id_status = st.id_status
+
+							WHERE l.id = :id
+
+					ORDER BY c.id_titulo DESC"; 
+
 			$stmt = $this->conn->prepare($sql);
 			$stmt->bindValue(':id', $this->chamados->__get('id'));
 			//$stmt->bindValue(':id', 1);
 			$stmt->execute();
 
 			$result = $stmt->fetchAll(\PDO::FETCH_OBJ);
+			
+
 
 			}
 
@@ -69,13 +78,14 @@
 			$soma = $chamados->id_titulo +1;
 			
 			//$sql = "INSERT INTO chamados (id_user,titulo,categoria,descricao) values (?,?, ?,?)";
-			$sql = "INSERT INTO chamados (id_user,id_titulo,titulo,categoria,descricao) values (?,?,?, ?,?)";
+			$sql = "INSERT INTO chamados (id_user,id_titulo,titulo,categoria,descricao, id_status) values (?,?,?, ?,?,?)";
 			$stmt = $this->conn->prepare($sql);
 			$stmt->bindValue(1, $this->chamados->__get('id'));
 			$stmt->bindValue(2, $soma);
 			$stmt->bindValue(3, $this->chamados->__get('titulo'));
 			$stmt->bindValue(4, $this->chamados->__get('categoria'));
 			$stmt->bindValue(5, $this->chamados->__get('descricao'));
+			$stmt->bindValue(6, 1);
 
             //ate aqui está funcionando normal
             return $stmt->execute();  
@@ -84,8 +94,14 @@
 
 		public function update(){
 
+			$sql = "UPDATE chamados SET id_status = :id_status WHERE id_titulo = :id_titulo";
 
-
+			$stmt = $this->conn->prepare($sql);
+			$stmt->bindValue(':id_status' , 3);
+			$stmt->bindValue(':id_titulo' , $this->chamados->__get('id'));
+			
+			return $stmt->execute(); 
+			
 		}
 
 		public function delete(){
