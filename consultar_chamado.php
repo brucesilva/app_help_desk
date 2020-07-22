@@ -92,20 +92,26 @@
                   <div class="card-body" >  
                    
                     <div class="row" >
-                      <div class="col-md-9" >
+                      <div class="col-md-7" >
                         <h5 class="card-title">    
                         <br> <?=$value->titulo ?> 
                       </h5> 
-                      </div><!-- col-md-11-->
-
-                      <div class="col-md-3" style=" text-align: center; margin: auto;"> 
-                         <i class="fa fa-trash fa-lg" onclick="removeChamado(<?=$value->id_titulo?>);"></i>
-                         Data de Abertura <?=date('d/m/Y', strtotime($value->dataChamado)) ?>
-                         Horário - <?=date('H:i:s', strtotime($value->dataChamado)) ?> 
+                      </div><!-- col-md-11--> 
+ 
+                      <div class="col-md-2" style=" text-align: right; margin: auto; "> 
+                         <i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i>
+                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                         <i class="fa fa-trash fa-lg" onclick="removeChamado(<?=$value->id_titulo?>);"></i> 
                       </div><!-- col-md-1--> 
+
+                      <div class="col-md-3" style=" margin: auto;"> 
+                          Data de Abertura <?=date('d/m/Y', strtotime($value->dataChamado)) ?>
+                         Horário - <?=date('H:i:s', strtotime($value->dataChamado)) ?> 
+                       </div> <!-- col-md-3--> 
+
                     </div><!-- fecha row -->
 
- 
+                    
                       <h6 class="card-subtitle mb-2 text-muted">  <br> <?=$value->categoria ?></h6>
                       <p class="card-text">   <br> <?=$value->descricao ?></p>  
                     </div> 
